@@ -4,6 +4,11 @@ import Test.Hspec
 import Interpolation
 import Processor
 
+
+linearAdapter :: [(Double, Double)] -> Double -> Double
+linearAdapter (p1:p2:_) x = linearInterpolate p1 p2 x
+linearAdapter _ _ = 0/0
+
 main :: IO ()
 main = hspec $ do
     describe "Interpolation module" $ do
@@ -34,7 +39,7 @@ main = hspec $ do
     describe "Processor module" $ do
         
         describe "runSlidingWindow" $ do
-            let linearConfig = AlgoConfig "linear" 2 0.5 linearInterpolatorAdapter
+            let linearConfig = AlgoConfig "linear" 2 0.5 linearAdapter
             
             it "returns empty for insufficient points" $ do
                 runSlidingWindow linearConfig [(0,0)] `shouldBe` []
