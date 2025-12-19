@@ -1,0 +1,5 @@
+build
+.stack
+.stack-work
+stack.yaml.lock
+lab3.cabal
