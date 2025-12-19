@@ -1,7 +1,6 @@
  module Main where
 
 import System.Environment (getArgs)
-import System.IO (stdout)
 import Text.Printf (printf)
 import Data.Maybe (catMaybes)
 

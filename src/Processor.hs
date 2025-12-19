@@ -1,6 +1,6 @@
 module Processor where
 
-import Interpolation (Point, newtonInterpolate, linearInterpolate)
+import Interpolation (Point)
 
 type Interpolator = [Point] -> Double -> Double
 
@@ -66,11 +66,3 @@ runSlidingWindow config inputStream =
                 calcY = interpolator conf window
             in
                 map (\x -> (algoName conf, (x, calcY x))) xs
-
-
-linearInterpolatorAdapter :: [Point] -> Double -> Double
-linearInterpolatorAdapter (p1:p2:_) x = linearInterpolate p1 p2 x
-linearInterpolatorAdapter _ _ = 0/0
-
-newtonInterpolatorAdapter :: [Point] -> Double -> Double
-newtonInterpolatorAdapter = newtonInterpolate
